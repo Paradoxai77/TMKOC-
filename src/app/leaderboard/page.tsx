@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { supabaseMock, LeaderboardEntry } from "@/lib/supabaseMock";
+import { useUserStore } from "@/store/userStore";
 import { audioPipeline } from "@/lib/audioPipeline";
 import {
   FaTrophy,
@@ -13,6 +14,7 @@ import {
 } from "react-icons/fa";
 
 export default function LeaderboardPage() {
+  const { profile } = useUserStore();
   const [list, setList] = useState<LeaderboardEntry[]>([]);
   const [searchVal, setSearchVal] = useState("");
   const [mounted, setMounted] = useState(false);
@@ -148,7 +150,7 @@ export default function LeaderboardPage() {
                 <tr
                   key={user.user_id}
                   className={`border-b-2 border-g-maroon/10 ${
-                    user.user_id === "gokuldham-guest-uuid" ? "bg-amber-50" : "bg-white hover:bg-g-bg/30"
+                    profile && user.user_id === profile.id ? "bg-amber-50" : "bg-white hover:bg-g-bg/30"
                   }`}
                 >
                   <td className="p-4">
@@ -158,8 +160,8 @@ export default function LeaderboardPage() {
                   </td>
                   <td className="p-4 flex items-center space-x-2">
                     <FaUserAlt className="text-g-maroon/40 text-xs" />
-                    <span className={user.user_id === "gokuldham-guest-uuid" ? "font-extrabold text-g-terracotta" : ""}>
-                      @{user.username} {user.user_id === "gokuldham-guest-uuid" && "(Aap)"}
+                    <span className={profile && user.user_id === profile.id ? "font-extrabold text-g-terracotta" : ""}>
+                      @{user.username} {profile && user.user_id === profile.id && "(Aap)"}
                     </span>
                   </td>
                   <td className="p-4">LVL {user.level}</td>
@@ -176,14 +178,14 @@ export default function LeaderboardPage() {
                   <tr
                     key={user.user_id}
                     className={`border-b-2 border-g-maroon/10 ${
-                      user.user_id === "gokuldham-guest-uuid" ? "bg-amber-50" : "bg-white hover:bg-g-bg/30"
+                      profile && user.user_id === profile.id ? "bg-amber-50" : "bg-white hover:bg-g-bg/30"
                     }`}
                   >
                     <td className="p-4 font-mono text-[11px] opacity-75">#{rank}</td>
                     <td className="p-4 flex items-center space-x-2">
                       <FaUserAlt className="text-g-maroon/40 text-xs" />
-                      <span className={user.user_id === "gokuldham-guest-uuid" ? "font-extrabold text-g-terracotta" : ""}>
-                        @{user.username} {user.user_id === "gokuldham-guest-uuid" && "(Aap)"}
+                      <span className={profile && user.user_id === profile.id ? "font-extrabold text-g-terracotta" : ""}>
+                        @{user.username} {profile && user.user_id === profile.id && "(Aap)"}
                       </span>
                     </td>
                     <td className="p-4">LVL {user.level}</td>

@@ -29,7 +29,7 @@ import { motion, AnimatePresence } from "framer-motion";
 export default function PlayArenaPage() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const { gainXP, loadUser } = useUserStore();
+  const { profile, gainXP, loadUser } = useUserStore();
   
   const categoryId = searchParams.get("category") || "society_trivia";
   const difficulty = searchParams.get("difficulty") || "easy";
@@ -106,7 +106,8 @@ export default function PlayArenaPage() {
             difficulty,
             finalScore,
             correctCount,
-            context.questions.length
+            context.questions.length,
+            profile?.id
           );
 
           // Award coins and XP

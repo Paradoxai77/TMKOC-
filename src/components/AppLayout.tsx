@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useUserStore } from "@/store/userStore";
 import { audioPipeline } from "@/lib/audioPipeline";
 import {
@@ -21,7 +21,8 @@ import { motion, AnimatePresence } from "framer-motion";
 
 export default function AppLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
-  const { profile, streak, isMuted, loadUser, toggleMute, activeTheme } = useUserStore();
+  const router = useRouter();
+  const { profile, streak, isMuted, loadUser, toggleMute, activeTheme, loading, logout } = useUserStore();
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -35,10 +36,19 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
     }
   }, [isMuted, mounted]);
 
+  // Route protection redirect
+  useEffect(() => {
+    if (mounted && !loading && !profile && pathname !== "/login") {
+      router.push("/login");
+    }
+  }, [mounted, loading, profile, pathname, router]);
+
   // Handle clicking sounds
   const handleNavClick = () => {
     audioPipeline.play("TICK_TOCK");
   };
+
+  const isLoginPage = pathname === "/login";
 
   if (!mounted) {
     return (
@@ -80,7 +90,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
   return (
     <div className={`min-h-screen flex flex-col ${themeBg} transition-colors duration-500`}>
       {/* Theme Banner */}
-      {bannerText && (
+      {bannerText && !isLoginPage && (
         <div className="bg-g-mustard text-g-maroon font-bold py-2 px-4 text-center text-xs md:text-sm border-b-2 border-g-maroon animate-pulse z-30">
           {bannerText}
         </div>
@@ -100,8 +110,8 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
         </div>
 
         {/* Stats and Controls */}
-        <div className="flex items-center space-x-3 md:space-x-6">
-          {profile && (
+        <div className="flex items-center space-x-2 md:space-x-4">
+          {profile && !isLoginPage && (
             <>
               {/* Level Badge */}
               <div className="flex items-center bg-g-bg border-2 border-g-maroon px-2 py-1 rounded-md text-xs font-bold retro-shadow-sm">
@@ -136,66 +146,83 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
           >
             {isMuted ? <FaVolumeMute className="text-sm md:text-base" /> : <FaVolumeUp className="text-sm md:text-base" />}
           </button>
+
+          {/* Logout Button */}
+          {profile && (
+            <button
+              onClick={() => {
+                audioPipeline.play("WRONG_TRING");
+                logout();
+                router.push("/login");
+              }}
+              className="p-2 border-2 border-g-maroon bg-g-bg hover:bg-g-terracotta hover:text-white rounded-md transition-colors retro-shadow-sm text-xs font-bold"
+              aria-label="Logout"
+            >
+              🚪 <span className="hidden sm:inline">Logout</span>
+            </button>
+          )}
         </div>
       </header>
 
       {/* Main Body Layout */}
       <div className="flex-1 flex flex-col md:flex-row relative">
         {/* Desktop Sidebar Navigation */}
-        <aside className="w-64 border-r-4 border-g-maroon bg-g-card hidden md:flex flex-col justify-between py-6 px-4 z-10">
-          <div className="space-y-4">
-            <div className="px-3 mb-4">
-              {profile ? (
-                <div className="bg-g-bg border-2 border-g-maroon p-3 rounded-lg retro-shadow-sm">
-                  <p className="text-xs text-g-maroon/60 font-bold uppercase tracking-wider">Gokuldham Member</p>
-                  <p className="font-display text-lg font-extrabold text-g-maroon truncate">@{profile.username}</p>
-                  <div className="w-full bg-g-card border border-g-maroon rounded-full h-2.5 mt-2 overflow-hidden">
-                    <div
-                      className="bg-g-teal h-full transition-all duration-300"
-                      style={{ width: `${(profile.current_xp % (profile.current_level * 200)) / (profile.current_level * 2)}%` }}
-                    ></div>
+        {!isLoginPage && (
+          <aside className="w-64 border-r-4 border-g-maroon bg-g-card hidden md:flex flex-col justify-between py-6 px-4 z-10">
+            <div className="space-y-4">
+              <div className="px-3 mb-4">
+                {profile ? (
+                  <div className="bg-g-bg border-2 border-g-maroon p-3 rounded-lg retro-shadow-sm">
+                    <p className="text-xs text-g-maroon/60 font-bold uppercase tracking-wider">Gokuldham Member</p>
+                    <p className="font-display text-lg font-extrabold text-g-maroon truncate">@{profile.username}</p>
+                    <div className="w-full bg-g-card border border-g-maroon rounded-full h-2.5 mt-2 overflow-hidden">
+                      <div
+                        className="bg-g-teal h-full transition-all duration-300"
+                        style={{ width: `${(profile.current_xp % (profile.current_level * 200)) / (profile.current_level * 2)}%` }}
+                      ></div>
+                    </div>
+                    <p className="text-[10px] text-right mt-1 text-g-maroon/70 font-semibold">
+                      {profile.current_xp % (profile.current_level * 200)} / {profile.current_level * 200} XP
+                    </p>
                   </div>
-                  <p className="text-[10px] text-right mt-1 text-g-maroon/70 font-semibold">
-                    {profile.current_xp % (profile.current_level * 200)} / {profile.current_level * 200} XP
-                  </p>
-                </div>
-              ) : (
-                <div className="h-16 bg-gray-200 animate-pulse rounded-lg"></div>
-              )}
+                ) : (
+                  <div className="h-16 bg-gray-200 animate-pulse rounded-lg"></div>
+                )}
+              </div>
+
+              <nav className="space-y-2">
+                {navItems.map((item) => {
+                  const isActive = pathname === item.href || (item.href !== "/" && pathname.startsWith(item.href));
+                  return (
+                    <Link
+                      key={item.name}
+                      href={item.href}
+                      onClick={handleNavClick}
+                      className={`flex items-center justify-between px-4 py-3 rounded-xl border-2 font-bold transition-all ${
+                        isActive
+                          ? "bg-g-teal text-white border-g-maroon shadow-[4px_4px_0px_0px_#4A1F1F]"
+                          : "bg-g-bg text-g-maroon border-transparent hover:border-g-maroon hover:shadow-[4px_4px_0px_0px_#4A1F1F]"
+                      }`}
+                    >
+                      <div className="flex items-center space-x-3">
+                        <item.icon className="text-lg" />
+                        <span>{item.name}</span>
+                      </div>
+                      {isActive && <FaChevronRight className="text-xs" />}
+                    </Link>
+                  );
+                })}
+              </nav>
             </div>
 
-            <nav className="space-y-2">
-              {navItems.map((item) => {
-                const isActive = pathname === item.href || (item.href !== "/" && pathname.startsWith(item.href));
-                return (
-                  <Link
-                    key={item.name}
-                    href={item.href}
-                    onClick={handleNavClick}
-                    className={`flex items-center justify-between px-4 py-3 rounded-xl border-2 font-bold transition-all ${
-                      isActive
-                        ? "bg-g-teal text-white border-g-maroon shadow-[4px_4px_0px_0px_#4A1F1F]"
-                        : "bg-g-bg text-g-maroon border-transparent hover:border-g-maroon hover:shadow-[4px_4px_0px_0px_#4A1F1F]"
-                    }`}
-                  >
-                    <div className="flex items-center space-x-3">
-                      <item.icon className="text-lg" />
-                      <span>{item.name}</span>
-                    </div>
-                    {isActive && <FaChevronRight className="text-xs" />}
-                  </Link>
-                );
-              })}
-            </nav>
-          </div>
-
-          <div className="px-3 text-center border-t-2 border-g-maroon/20 pt-4">
-            <p className="text-[10px] font-bold text-g-maroon/60 uppercase">Society Notice</p>
-            <p className="text-xs italic text-g-maroon/80 font-medium mt-1">
-              \"Maintenance bill is due on time!\" - Bhide
-            </p>
-          </div>
-        </aside>
+            <div className="px-3 text-center border-t-2 border-g-maroon/20 pt-4">
+              <p className="text-[10px] font-bold text-g-maroon/60 uppercase">Society Notice</p>
+              <p className="text-xs italic text-g-maroon/80 font-medium mt-1">
+                "Maintenance bill is due on time!" - Bhide
+              </p>
+            </div>
+          </aside>
+        )}
 
         {/* Content Panel */}
         <main className="flex-1 overflow-y-auto pb-24 md:pb-6 p-4 md:p-8">
@@ -215,26 +242,28 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
       </div>
 
       {/* Mobile Bottom Navigation Bar */}
-      <nav className="fixed bottom-0 left-0 right-0 bg-g-card border-t-4 border-g-maroon flex md:hidden items-center justify-around py-3 px-2 z-20 retro-shadow-sm">
-        {navItems.map((item) => {
-          const isActive = pathname === item.href || (item.href !== "/" && pathname.startsWith(item.href));
-          return (
-            <Link
-              key={item.name}
-              href={item.href}
-              onClick={handleNavClick}
-              className={`flex flex-col items-center space-y-1 py-1 px-3 rounded-lg border-2 transition-all ${
-                isActive
-                  ? "bg-g-teal text-white border-g-maroon retro-shadow-sm"
-                  : "text-g-maroon border-transparent"
-              }`}
-            >
-              <item.icon className="text-lg" />
-              <span className="text-[10px] font-extrabold">{item.name}</span>
-            </Link>
-          );
-        })}
-      </nav>
+      {!isLoginPage && (
+        <nav className="fixed bottom-0 left-0 right-0 bg-g-card border-t-4 border-g-maroon flex md:hidden items-center justify-around py-3 px-2 z-20 retro-shadow-sm">
+          {navItems.map((item) => {
+            const isActive = pathname === item.href || (item.href !== "/" && pathname.startsWith(item.href));
+            return (
+              <Link
+                key={item.name}
+                href={item.href}
+                onClick={handleNavClick}
+                className={`flex flex-col items-center space-y-1 py-1 px-3 rounded-lg border-2 transition-all ${
+                  isActive
+                    ? "bg-g-teal text-white border-g-maroon retro-shadow-sm"
+                    : "text-g-maroon border-transparent"
+                }`}
+              >
+                <item.icon className="text-lg" />
+                <span className="text-[10px] font-extrabold">{item.name}</span>
+              </Link>
+            );
+          })}
+        </nav>
+      )}
     </div>
   );
 }

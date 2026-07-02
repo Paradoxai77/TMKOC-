@@ -11,6 +11,8 @@ interface UserState {
   
   // Actions
   loadUser: () => Promise<void>;
+  login: (userId: string) => Promise<void>;
+  logout: () => void;
   updateUsername: (name: string) => Promise<void>;
   gainXP: (xp: number, coins?: number) => Promise<void>;
   completeDailyTask: (task: keyof Streak["daily_tasks"]) => Promise<void>;
@@ -32,26 +34,47 @@ export const useUserStore = create<UserState>((set, get) => ({
   loadUser: async () => {
     set({ loading: true });
     try {
-      const profile = await supabaseMock.getProfile();
-      const streak = await supabaseMock.getStreak();
+      const activeId = typeof window !== "undefined" ? localStorage.getItem("gokuldham_current_user_id") : null;
+      if (!activeId) {
+        set({ profile: null, streak: null, loading: false });
+        return;
+      }
+      const profile = await supabaseMock.getProfile(activeId);
+      const streak = await supabaseMock.getStreak(activeId);
       
       // Check if it's a new day and reset daily tasks if last played date is not today
       const today = new Date().toISOString().split('T')[0];
       if (streak.last_played_date && streak.last_played_date !== today) {
-        const resetStreak = await supabaseMock.resetDailyTasks();
+        const resetStreak = await supabaseMock.resetDailyTasks(activeId);
         set({ profile, streak: resetStreak, loading: false });
       } else {
         set({ profile, streak, loading: false });
       }
     } catch (e) {
       console.error("Failed to load user progress:", e);
-      set({ loading: false });
+      set({ profile: null, streak: null, loading: false });
     }
   },
 
+  login: async (userId: string) => {
+    if (typeof window !== "undefined") {
+      localStorage.setItem("gokuldham_current_user_id", userId);
+    }
+    await get().loadUser();
+  },
+
+  logout: () => {
+    if (typeof window !== "undefined") {
+      localStorage.removeItem("gokuldham_current_user_id");
+    }
+    set({ profile: null, streak: null });
+  },
+
   updateUsername: async (name: string) => {
+    const profile = get().profile;
+    if (!profile) return;
     try {
-      const updated = await supabaseMock.updateProfile("gokuldham-guest-uuid", { username: name });
+      const updated = await supabaseMock.updateProfile(profile.id, { username: name });
       set({ profile: updated });
     } catch (e) {
       console.error(e);
@@ -59,8 +82,10 @@ export const useUserStore = create<UserState>((set, get) => ({
   },
 
   gainXP: async (xp: number, coins = 0) => {
+    const profile = get().profile;
+    if (!profile) return;
     try {
-      const updated = await supabaseMock.addXP("gokuldham-guest-uuid", xp, coins);
+      const updated = await supabaseMock.addXP(profile.id, xp, coins);
       set({ profile: updated });
     } catch (e) {
       console.error(e);
@@ -68,12 +93,14 @@ export const useUserStore = create<UserState>((set, get) => ({
   },
 
   completeDailyTask: async (task: keyof Streak["daily_tasks"]) => {
+    const profile = get().profile;
+    if (!profile) return;
     try {
-      const updated = await supabaseMock.updateDailyTask("gokuldham-guest-uuid", task, true);
+      const updated = await supabaseMock.updateDailyTask(profile.id, task, true);
       set({ streak: updated });
       
       // Reload profile in case a level-up/coin-gain happened during sheet completion
-      const updatedProfile = await supabaseMock.getProfile();
+      const updatedProfile = await supabaseMock.getProfile(profile.id);
       set({ profile: updatedProfile });
     } catch (e) {
       console.error(e);
@@ -86,8 +113,10 @@ export const useUserStore = create<UserState>((set, get) => ({
   },
 
   resetDailies: async () => {
+    const profile = get().profile;
+    if (!profile) return;
     try {
-      const updated = await supabaseMock.resetDailyTasks("gokuldham-guest-uuid");
+      const updated = await supabaseMock.resetDailyTasks(profile.id);
       set({ streak: updated });
     } catch (e) {
       console.error(e);

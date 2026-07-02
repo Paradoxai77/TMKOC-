@@ -51,9 +51,59 @@ const MOCK_PROFILES: Record<string, Profile> = {
     username: "TapuKePapa",
     current_xp: 450,
     current_level: 2,
-    unlocked_floor: 1, // Floor 1 (Wings A & B)
+    unlocked_floor: 1, // Floor 1
     avatar_frame_url: "/frames/soda_glass.png",
     coins: 120,
+    created_at: new Date().toISOString(),
+  },
+  "jethalal": {
+    id: "jethalal",
+    username: "Jetha_Gada_100",
+    current_xp: 12850,
+    current_level: 32,
+    unlocked_floor: 3,
+    avatar_frame_url: null,
+    coins: 2500,
+    created_at: new Date().toISOString(),
+  },
+  "bhide": {
+    id: "bhide",
+    username: "Bhide_Ek_Mev_Secretary",
+    current_xp: 11400,
+    current_level: 28,
+    unlocked_floor: 3,
+    avatar_frame_url: null,
+    coins: 1500,
+    created_at: new Date().toISOString(),
+  },
+  "taarak": {
+    id: "taarak",
+    username: "Taarak_Mehta_Author",
+    current_xp: 9800,
+    current_level: 24,
+    unlocked_floor: 2,
+    avatar_frame_url: null,
+    coins: 1200,
+    created_at: new Date().toISOString(),
+  },
+  "daya": {
+    id: "daya",
+    username: "Daya_Ben_Garba",
+    current_xp: 3000,
+    current_level: 15,
+    unlocked_floor: 1,
+    avatar_frame_url: null,
+    coins: 800,
+    created_at: new Date().toISOString(),
+  },
+  "popatlal": {
+    id: "popatlal",
+    username: "Popatlal_Journalist",
+    current_xp: 900,
+    current_level: 5,
+    unlocked_floor: 0,
+    avatar_frame_url: null,
+    coins: 200,
     created_at: new Date().toISOString(),
   }
 };
@@ -70,16 +120,57 @@ const MOCK_STREAKS: Record<string, Streak> = {
       fixSodhiJeep: false,
       sodaShopVisit: false,
     }
+  },
+  "jethalal": {
+    user_id: "jethalal",
+    current_streak: 8,
+    longest_streak: 15,
+    last_played_date: new Date().toISOString().split('T')[0],
+    maintenance_sheet_completed: false,
+    daily_tasks: { collectBhideChecks: false, fixSodhiJeep: false, sodaShopVisit: false }
+  },
+  "bhide": {
+    user_id: "bhide",
+    current_streak: 12,
+    longest_streak: 20,
+    last_played_date: new Date().toISOString().split('T')[0],
+    maintenance_sheet_completed: false,
+    daily_tasks: { collectBhideChecks: false, fixSodhiJeep: false, sodaShopVisit: false }
+  },
+  "taarak": {
+    user_id: "taarak",
+    current_streak: 5,
+    longest_streak: 10,
+    last_played_date: new Date().toISOString().split('T')[0],
+    maintenance_sheet_completed: false,
+    daily_tasks: { collectBhideChecks: false, fixSodhiJeep: false, sodaShopVisit: false }
+  },
+  "daya": {
+    user_id: "daya",
+    current_streak: 3,
+    longest_streak: 6,
+    last_played_date: new Date().toISOString().split('T')[0],
+    maintenance_sheet_completed: false,
+    daily_tasks: { collectBhideChecks: false, fixSodhiJeep: false, sodaShopVisit: false }
+  },
+  "popatlal": {
+    user_id: "popatlal",
+    current_streak: 1,
+    longest_streak: 3,
+    last_played_date: new Date().toISOString().split('T')[0],
+    maintenance_sheet_completed: false,
+    daily_tasks: { collectBhideChecks: false, fixSodhiJeep: false, sodaShopVisit: false }
   }
 };
 
 const MOCK_LEADERBOARD: LeaderboardEntry[] = [
-  { user_id: "u1", username: "Jetha_Gada_100", score: 12850, level: 32, unlocked_floor: 4, updated_at: new Date().toISOString() },
-  { user_id: "u2", username: "Bhide_Ek_Mev_Secretary", score: 11400, level: 28, unlocked_floor: 3, updated_at: new Date().toISOString() },
-  { user_id: "u3", username: "Taarak_Mehta_Author", score: 9800, level: 24, unlocked_floor: 2, updated_at: new Date().toISOString() },
-  { user_id: "u4", username: "Sodhi_Balle_Balle", score: 8550, level: 20, unlocked_floor: 2, updated_at: new Date().toISOString() },
-  { user_id: "u5", username: "Iyer_Scientist", score: 7900, level: 18, unlocked_floor: 2, updated_at: new Date().toISOString() },
-  { user_id: "u6", username: "Dr_Hathi_Sahi_Hai", score: 6200, level: 12, unlocked_floor: 1, updated_at: new Date().toISOString() },
+  { user_id: "jethalal", username: "Jetha_Gada_100", score: 12850, level: 32, unlocked_floor: 3, updated_at: new Date().toISOString() },
+  { user_id: "bhide", username: "Bhide_Ek_Mev_Secretary", score: 11400, level: 28, unlocked_floor: 3, updated_at: new Date().toISOString() },
+  { user_id: "taarak", username: "Taarak_Mehta_Author", score: 9800, level: 24, unlocked_floor: 2, updated_at: new Date().toISOString() },
+  { user_id: "sodhi", username: "Sodhi_Balle_Balle", score: 8550, level: 20, unlocked_floor: 2, updated_at: new Date().toISOString() },
+  { user_id: "iyer", username: "Iyer_Scientist", score: 7900, level: 18, unlocked_floor: 2, updated_at: new Date().toISOString() },
+  { user_id: "daya", username: "Daya_Ben_Garba", score: 3000, level: 15, unlocked_floor: 1, updated_at: new Date().toISOString() },
+  { user_id: "popatlal", username: "Popatlal_Journalist", score: 900, level: 5, unlocked_floor: 0, updated_at: new Date().toISOString() },
 ];
 
 const LOCAL_STORAGE_KEYS = {

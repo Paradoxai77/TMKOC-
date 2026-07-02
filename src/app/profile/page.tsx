@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import { useUserStore } from "@/store/userStore";
 import { supabaseMock, GameLog } from "@/lib/supabaseMock";
 import { audioPipeline } from "@/lib/audioPipeline";
@@ -25,18 +26,20 @@ interface Badge {
 }
 
 export default function ProfilePage() {
-  const { profile, streak, activeTheme, changeTheme } = useUserStore();
+  const router = useRouter();
+  const { profile, streak, activeTheme, changeTheme, logout } = useUserStore();
   const [history, setHistory] = useState<GameLog[]>([]);
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     setMounted(true);
+    if (!profile) return;
     const fetchHistory = async () => {
-      const logs = await supabaseMock.getGameHistory();
+      const logs = await supabaseMock.getGameHistory(profile.id);
       setHistory(logs);
     };
     fetchHistory();
-  }, []);
+  }, [profile]);
 
   if (!mounted) return null;
 
@@ -109,6 +112,20 @@ export default function ProfilePage() {
               <span>{streak?.current_streak}D Daily Streak</span>
             </div>
           </div>
+        </div>
+        
+        {/* Logout Action */}
+        <div className="flex-shrink-0">
+          <button
+            onClick={() => {
+              audioPipeline.play("WRONG_TRING");
+              logout();
+              router.push("/login");
+            }}
+            className="retro-btn bg-g-terracotta text-white font-bold py-2.5 px-5 rounded-xl text-xs hover:bg-g-mustard hover:text-g-maroon transition-all"
+          >
+            🚪 Log Out of Gate
+          </button>
         </div>
       </section>
 
