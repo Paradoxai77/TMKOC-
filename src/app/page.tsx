@@ -220,60 +220,71 @@ export default function HomePage() {
               Your level unlocks different blocks of Gokuldham. Click on the floors below to inspect residents!
             </p>
 
-            {/* Building Grid */}
-            <div className="space-y-4 max-w-md mx-auto">
-              {/* Terrace (Lvl 26+) */}
-              <div
-                onClick={() => setActiveBuildingInfo(getFloorCharacterInfo(3))}
-                className={`border-4 rounded-xl p-4 text-center cursor-pointer transition-all ${
-                  unlockedFloor >= 3
-                    ? "bg-blue-100 border-blue-500 hover:bg-blue-200"
-                    : "bg-gray-100 border-gray-400 opacity-60 hover:opacity-80"
-                }`}
-              >
-                <div className="font-display text-lg font-bold">The Terrace / Water Tank</div>
-                <div className="text-[10px] font-bold text-g-maroon/60 mt-0.5">
-                  {unlockedFloor >= 3 ? "🔓 UNLOCKED (Level 26+)" : "🔒 Unlocks at Level 26"}
+            {/* Building Layout Container */}
+            <div className="flex flex-col md:flex-row gap-6 items-center justify-center">
+              {/* Building Grid */}
+              <div className="space-y-4 max-w-md w-full">
+                {/* Terrace (Lvl 26+) */}
+                <div
+                  onClick={() => setActiveBuildingInfo(getFloorCharacterInfo(3))}
+                  className={`border-4 rounded-xl p-4 text-center cursor-pointer transition-all ${
+                    unlockedFloor >= 3
+                      ? "bg-blue-100 border-blue-500 hover:bg-blue-200"
+                      : "bg-gray-100 border-gray-400 opacity-60 hover:opacity-80"
+                  }`}
+                >
+                  <div className="font-display text-lg font-bold">The Terrace / Water Tank</div>
+                  <div className="text-[10px] font-bold text-g-maroon/60 mt-0.5">
+                    {unlockedFloor >= 3 ? "🔓 UNLOCKED (Level 26+)" : "🔒 Unlocks at Level 26"}
+                  </div>
+                </div>
+
+                {/* 2nd Floor (Lvl 16+) */}
+                <div
+                  onClick={() => setActiveBuildingInfo(getFloorCharacterInfo(2))}
+                  className={`border-4 rounded-xl p-4 text-center cursor-pointer transition-all ${
+                    unlockedFloor >= 2
+                      ? "bg-amber-100 border-amber-500 hover:bg-amber-200"
+                      : "bg-gray-100 border-gray-400 opacity-60 hover:opacity-80"
+                  }`}
+                >
+                  <div className="font-display text-lg font-bold">2nd Floor (Sodhi, Iyer, Dr. Hathi)</div>
+                  <div className="text-[10px] font-bold text-g-maroon/60 mt-0.5">
+                    {unlockedFloor >= 2 ? "🔓 UNLOCKED (Level 16+)" : "🔒 Unlocks at Level 16"}
+                  </div>
+                </div>
+
+                {/* 1st Floor (Lvl 6+) */}
+                <div
+                  onClick={() => setActiveBuildingInfo(getFloorCharacterInfo(1))}
+                  className={`border-4 rounded-xl p-4 text-center cursor-pointer transition-all ${
+                    unlockedFloor >= 1
+                      ? "bg-teal-100 border-teal-500 hover:bg-teal-200"
+                      : "bg-gray-100 border-gray-400 opacity-60 hover:opacity-80"
+                  }`}
+                >
+                  <div className="font-display text-lg font-bold">1st Floor (Jethalal, Bhide, Taarak)</div>
+                  <div className="text-[10px] font-bold text-g-maroon/60 mt-0.5">
+                    {unlockedFloor >= 1 ? "🔓 UNLOCKED (Level 6+)" : "🔒 Unlocks at Level 6"}
+                  </div>
+                </div>
+
+                {/* Ground Floor (Lvl 1+) */}
+                <div
+                  onClick={() => setActiveBuildingInfo(getFloorCharacterInfo(0))}
+                  className="border-4 border-g-teal rounded-xl p-4 text-center cursor-pointer bg-emerald-100 hover:bg-emerald-200 transition-all"
+                >
+                  <div className="font-display text-lg font-bold text-g-maroon">Ground Floor (Abdul's Soda Shop)</div>
+                  <div className="text-[10px] font-bold text-emerald-800 mt-0.5">🔓 ALWAYS UNLOCKED (Level 1+)</div>
                 </div>
               </div>
 
-              {/* 2nd Floor (Lvl 16+) */}
-              <div
-                onClick={() => setActiveBuildingInfo(getFloorCharacterInfo(2))}
-                className={`border-4 rounded-xl p-4 text-center cursor-pointer transition-all ${
-                  unlockedFloor >= 2
-                    ? "bg-amber-100 border-amber-500 hover:bg-amber-200"
-                    : "bg-gray-100 border-gray-400 opacity-60 hover:opacity-80"
-                }`}
-              >
-                <div className="font-display text-lg font-bold">2nd Floor (Sodhi, Iyer, Dr. Hathi)</div>
-                <div className="text-[10px] font-bold text-g-maroon/60 mt-0.5">
-                  {unlockedFloor >= 2 ? "🔓 UNLOCKED (Level 16+)" : "🔒 Unlocks at Level 16"}
+              {/* Building Illustration */}
+              <div className="w-full max-w-[280px] border-4 border-g-maroon rounded-2xl overflow-hidden retro-shadow flex-shrink-0 bg-white rotate-[1.5deg] hover:scale-105 transition-transform duration-300">
+                <img src="/images/gokuldham_society.png" alt="Gokuldham Society" className="w-full h-auto object-cover aspect-[4/3]" />
+                <div className="bg-g-maroon text-yellow-100 text-center font-display py-1.5 font-bold text-xs uppercase tracking-wider">
+                  Clubhouse Compound View
                 </div>
-              </div>
-
-              {/* 1st Floor (Lvl 6+) */}
-              <div
-                onClick={() => setActiveBuildingInfo(getFloorCharacterInfo(1))}
-                className={`border-4 rounded-xl p-4 text-center cursor-pointer transition-all ${
-                  unlockedFloor >= 1
-                    ? "bg-teal-100 border-teal-500 hover:bg-teal-200"
-                    : "bg-gray-100 border-gray-400 opacity-60 hover:opacity-80"
-                }`}
-              >
-                <div className="font-display text-lg font-bold">1st Floor (Jethalal, Bhide, Taarak)</div>
-                <div className="text-[10px] font-bold text-g-maroon/60 mt-0.5">
-                  {unlockedFloor >= 1 ? "🔓 UNLOCKED (Level 6+)" : "🔒 Unlocks at Level 6"}
-                </div>
-              </div>
-
-              {/* Ground Floor (Lvl 1+) */}
-              <div
-                onClick={() => setActiveBuildingInfo(getFloorCharacterInfo(0))}
-                className="border-4 border-g-teal rounded-xl p-4 text-center cursor-pointer bg-emerald-100 hover:bg-emerald-200 transition-all"
-              >
-                <div className="font-display text-lg font-bold text-g-maroon">Ground Floor (Abdul's Soda Shop)</div>
-                <div className="text-[10px] font-bold text-emerald-800 mt-0.5">🔓 ALWAYS UNLOCKED (Level 1+)</div>
               </div>
             </div>
           </div>

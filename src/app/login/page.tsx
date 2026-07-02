@@ -12,6 +12,7 @@ interface ResidentCard {
   name: string;
   username: string;
   avatar: string;
+  imageSrc?: string;
   level: number;
   xp: number;
   coins: number;
@@ -25,6 +26,7 @@ const RESIDENTS: ResidentCard[] = [
     name: "Jethalal Gada",
     username: "Jetha_Gada_100",
     avatar: "🧔🏽",
+    imageSrc: "/images/jethalal.png",
     level: 32,
     xp: 12850,
     coins: 2500,
@@ -36,6 +38,7 @@ const RESIDENTS: ResidentCard[] = [
     name: "Aatmaram Bhide",
     username: "Bhide_Ek_Mev_Secretary",
     avatar: "👨🏽‍🏫",
+    imageSrc: "/images/bhide.png",
     level: 28,
     xp: 11400,
     coins: 1500,
@@ -47,6 +50,7 @@ const RESIDENTS: ResidentCard[] = [
     name: "Daya Gada",
     username: "Daya_Ben_Garba",
     avatar: "💃🏽",
+    imageSrc: "/images/daya.png",
     level: 15,
     xp: 3000,
     coins: 800,
@@ -176,19 +180,26 @@ export default function LoginPage() {
       <motion.section
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="bg-[#1b3d2b] border-8 border-[#5c3e21] rounded-3xl p-6 md:p-8 text-yellow-100 retro-shadow relative overflow-hidden chalk-font text-center shadow-inner"
+        className="bg-[#1b3d2b] border-8 border-[#5c3e21] rounded-3xl p-6 md:p-8 text-yellow-100 retro-shadow relative overflow-hidden chalk-font shadow-inner"
       >
         <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-bl-full pointer-events-none"></div>
-        <div className="flex flex-col items-center justify-center space-y-4">
-          <div className="bg-g-mustard border-4 border-g-maroon p-3 rounded-full text-g-maroon text-3xl md:text-4xl shadow-sm rotate-[-3deg]">
-            <FaDoorOpen />
+        
+        <div className="flex flex-col md:flex-row items-center justify-between gap-6 relative z-10">
+          <div className="flex-1 space-y-4 text-center md:text-left flex flex-col items-center md:items-start">
+            <div className="bg-g-mustard border-4 border-g-maroon p-3 rounded-full text-g-maroon text-2xl md:text-3xl shadow-sm rotate-[-3deg] w-fit">
+              <FaDoorOpen />
+            </div>
+            <h2 className="font-display text-3xl md:text-5xl font-bold tracking-wider text-yellow-300">
+              GOKULDHAM GATE
+            </h2>
+            <p className="text-sm md:text-base text-yellow-100/90 font-medium max-w-xl font-sans leading-relaxed">
+              Aatmaram Ramchandra Bhide (Secretary) is verifying all entrants. To enter the ultimate TMKOC quiz platform, select a resident pass or register a new member!
+            </p>
           </div>
-          <h2 className="font-display text-3xl md:text-5xl font-bold tracking-wider text-yellow-300">
-            GOKULDHAM SOCIETY GATE
-          </h2>
-          <p className="text-sm md:text-base text-yellow-100/90 font-medium max-w-2xl font-sans">
-            Aatmaram Ramchandra Bhide (Secretary) is verifying all entrants. To enter the ultimate TMKOC quiz platform, select a resident pass or register a new member!
-          </p>
+
+          <div className="w-full md:w-52 h-32 border-4 border-g-mustard bg-white rounded-xl overflow-hidden shadow-md flex-shrink-0 rotate-[1deg] hover:scale-105 transition-transform duration-300">
+            <img src="/images/gokuldham_society.png" alt="Gokuldham Society" className="w-full h-full object-cover" />
+          </div>
         </div>
       </motion.section>
 
@@ -226,7 +237,13 @@ export default function LoginPage() {
                         @{res.username}
                       </p>
                     </div>
-                    <span className="text-3xl filter drop-shadow-sm">{res.avatar}</span>
+                    {res.imageSrc ? (
+                      <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-g-maroon/20 bg-white flex-shrink-0 shadow-inner">
+                        <img src={res.imageSrc} alt={res.name} className="w-full h-full object-cover" />
+                      </div>
+                    ) : (
+                      <span className="text-3xl filter drop-shadow-sm">{res.avatar}</span>
+                    )}
                   </div>
                   <p className="text-[11px] italic font-semibold font-sans mt-3 line-clamp-2">
                     {res.quote}
