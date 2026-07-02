@@ -62,6 +62,9 @@ export default function HomePage() {
 
   const triggerEasterEggClock = () => {
     audioPipeline.play("ALARM_JETHER");
+    if (typeof window !== "undefined") {
+      localStorage.setItem("gokuldham_alarm_easter_egg", "true");
+    }
     alert("🚨 ALARM TRIGGERED! Jethalal is late for Gada Electronics! You unlocked a secret!");
   };
 
@@ -124,11 +127,10 @@ export default function HomePage() {
             <div className="space-y-3">
               {/* Task 1 */}
               <div
-                onClick={() => !streak?.daily_tasks.collectBhideChecks && handleTaskClick("collectBhideChecks")}
-                className={`flex items-start p-3 rounded-xl border-2 cursor-pointer transition-all ${
+                className={`flex items-start p-3 rounded-xl border-2 transition-all ${
                   streak?.daily_tasks.collectBhideChecks
                     ? "bg-emerald-50 border-emerald-400 text-emerald-800"
-                    : "bg-g-bg border-g-maroon/20 hover:border-g-maroon"
+                    : "bg-g-bg border-g-maroon/20 opacity-75"
                 }`}
               >
                 <div className="mr-3 mt-1 text-lg">
@@ -146,11 +148,10 @@ export default function HomePage() {
 
               {/* Task 2 */}
               <div
-                onClick={() => !streak?.daily_tasks.fixSodhiJeep && handleTaskClick("fixSodhiJeep")}
-                className={`flex items-start p-3 rounded-xl border-2 cursor-pointer transition-all ${
+                className={`flex items-start p-3 rounded-xl border-2 transition-all ${
                   streak?.daily_tasks.fixSodhiJeep
                     ? "bg-emerald-50 border-emerald-400 text-emerald-800"
-                    : "bg-g-bg border-g-maroon/20 hover:border-g-maroon"
+                    : "bg-g-bg border-g-maroon/20 opacity-75"
                 }`}
               >
                 <div className="mr-3 mt-1 text-lg">

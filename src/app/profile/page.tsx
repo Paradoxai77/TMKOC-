@@ -54,14 +54,14 @@ export default function ProfilePage() {
       name: "Chai-Biscuit Fan",
       desc: "Used Bapuji's lecture to revive once.",
       icon: "☕",
-      unlocked: true, // Mock unlocked
+      unlocked: typeof window !== "undefined" && profile ? !!localStorage.getItem(`gokuldham_revive_used_${profile.id}`) : false,
     },
     {
       id: "b2",
       name: "Late for Gada Electronics",
       desc: "Triggered Jethalal's easter egg alarm.",
       icon: "🚨",
-      unlocked: typeof window !== "undefined" && !!localStorage.getItem("gokuldham_alarm_easter_egg"), // Read from store/state if clicked
+      unlocked: typeof window !== "undefined" && !!localStorage.getItem("gokuldham_alarm_easter_egg"),
     },
     {
       id: "b3",
@@ -73,9 +73,9 @@ export default function ProfilePage() {
     {
       id: "b4",
       name: "Garba Champion",
-      desc: "Successfully answer 10 quizzes using Daya's power-up.",
+      desc: "Used Daya's 50-50 power-up 3+ times.",
       icon: "💃🏽",
-      unlocked: history.length >= 2, // Mock unlocking based on games played
+      unlocked: typeof window !== "undefined" && profile ? parseInt(localStorage.getItem(`gokuldham_garba_powerups_used_${profile.id}`) || "0") >= 3 : false,
     }
   ];
 

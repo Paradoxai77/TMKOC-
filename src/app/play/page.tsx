@@ -260,6 +260,9 @@ export default function PlayArenaPage() {
             <button
               onClick={() => {
                 audioPipeline.play("ALARM_JETHER");
+                if (profile) {
+                  localStorage.setItem(`gokuldham_revive_used_${profile.id}`, "true");
+                }
                 send({ type: "REVIVE" });
               }}
               className="retro-btn w-full bg-g-mustard text-g-maroon font-extrabold py-3 px-4 rounded-xl text-xs md:text-sm hover:bg-g-teal hover:text-white transition-all flex items-center justify-center space-x-2"
@@ -603,6 +606,11 @@ export default function PlayArenaPage() {
             <button
               onClick={() => {
                 audioPipeline.play("BALLE_BALLE");
+                if (profile) {
+                  const key = `gokuldham_garba_powerups_used_${profile.id}`;
+                  const current = parseInt(localStorage.getItem(key) || "0");
+                  localStorage.setItem(key, (current + 1).toString());
+                }
                 send({ type: "USE_GARBA_5050" });
               }}
               disabled={context.usedPowerups.garba5050 || !isMcq || !state.matches("questionActive")}
