@@ -443,6 +443,98 @@ export const QUESTIONS_DATA: QuizQuestion[] = [
       correct: "Correct! Taarak refers to him simply as 'Boss' or 'Mr. Boss'.",
       incorrect: "Nope! It's Mr. Boss. The tyrant of files!"
     }
+  },
+  // 21. MCQ - Picture Quiz
+  {
+    id: "q_pic_2",
+    category: "picture_quiz",
+    q_type: "mcq",
+    difficulty_tier: "easy",
+    prompt_text: "Who are the two legendary actors seen in this picture celebrating a TMKOC milestone?",
+    media_asset: {
+      type: "image",
+      url: "https://upload.wikimedia.org/wikipedia/commons/6/62/Dilip_and_Disha_in_Success_bash_for_completion_of_1000_episodes_of_TMKOC.jpg"
+    },
+    options: [
+      { id: "opt_p2_1", text: "Taarak Mehta and Anjali Mehta" },
+      { id: "opt_p2_2", text: "Jethalal Gada and Daya Gada" },
+      { id: "opt_p2_3", text: "Aatmaram Bhide and Madhavi Bhide" },
+      { id: "opt_p2_4", text: "Popatlal Pandey and Rita Reporter" }
+    ],
+    correct_option_id: "opt_p2_2",
+    witty_one_liners: {
+      correct: "Balle Balle! The real Jetha and Daya! Tapu Ke Papa and Tapu Ki Mummy.",
+      incorrect: "Ae babuchak! Look closely, it is Jetha and Daya!"
+    }
+  },
+  // 22. MCQ - Picture Quiz
+  {
+    id: "q_pic_3",
+    category: "picture_quiz",
+    q_type: "mcq",
+    difficulty_tier: "medium",
+    prompt_text: "Identify this gorgeous actress who plays the role of Babita Krishnan Iyer in the show:",
+    media_asset: {
+      type: "image",
+      url: "https://upload.wikimedia.org/wikipedia/commons/a/a1/Munmun_Dutta.jpg"
+    },
+    options: [
+      { id: "opt_p3_1", text: "Munmun Dutta" },
+      { id: "opt_p3_2", text: "Sunayana Fozdar" },
+      { id: "opt_p3_3", text: "Jennifer Mistry Bansiwal" },
+      { id: "opt_p3_4", text: "Ambika Ranjankar" }
+    ],
+    correct_option_id: "opt_p3_1",
+    witty_one_liners: {
+      correct: "Jethalal is dancing in joy! Correct! It is Munmun Dutta (Babita Ji).",
+      incorrect: "Wrong! Iyer is typing a complaint to Bhide about your bad memory."
+    }
+  },
+  // 23. MCQ - Picture Quiz
+  {
+    id: "q_pic_4",
+    category: "picture_quiz",
+    q_type: "mcq",
+    difficulty_tier: "medium",
+    prompt_text: "Which actor, playing the iconic lead role of Jethalal Champaklal Gada, is pictured here at an award show?",
+    media_asset: {
+      type: "image",
+      url: "https://upload.wikimedia.org/wikipedia/commons/b/b9/Dilip_Joshi_at_Nickelodeon_Kids_Choice_Awards_2019.jpg"
+    },
+    options: [
+      { id: "opt_p4_1", text: "Dilip Joshi" },
+      { id: "opt_p4_2", text: "Amit Bhatt" },
+      { id: "opt_p4_3", text: "Shailesh Lodha" },
+      { id: "opt_p4_4", text: "Mandar Chandwadkar" }
+    ],
+    correct_option_id: "opt_p4_1",
+    witty_one_liners: {
+      correct: "Kya baat hai! Dilip Joshi, the acting powerhouse of TMKOC!",
+      incorrect: "Nonsense! That is Dilip Joshi. Go watch Gada Electronics ads!"
+    }
+  },
+  // 24. MCQ - Picture Quiz
+  {
+    id: "q_pic_5",
+    category: "picture_quiz",
+    q_type: "mcq",
+    difficulty_tier: "easy",
+    prompt_text: "Identify this actress who portrayed Daya Gada (famous for her Garba dances and 'Hey Maa, Mataji!'):",
+    media_asset: {
+      type: "image",
+      url: "https://upload.wikimedia.org/wikipedia/commons/4/47/Disha_Vakani.jpg"
+    },
+    options: [
+      { id: "opt_p5_1", text: "Disha Vakani" },
+      { id: "opt_p5_2", text: "Madhavi Bhide" },
+      { id: "opt_p5_3", text: "Komal Hathi" },
+      { id: "opt_p5_4", text: "Rita Reporter" }
+    ],
+    correct_option_id: "opt_p5_1",
+    witty_one_liners: {
+      correct: "Hey Maa, Mataji! Sahi jawab! Disha Vakani, the queen of Garba!",
+      incorrect: "Incorrect! Daya Gada is doing an angry garba now."
+    }
   }
 ];
 
@@ -480,7 +572,7 @@ export const CATEGORIES_META = [
     description: "Identify rare objects, costumes, and background frames.",
     icon: "FaImage",
     difficulty: "Hard",
-    questionsCount: 2,
+    questionsCount: 5,
     unlockedAtLevel: 1,
   },
   {
