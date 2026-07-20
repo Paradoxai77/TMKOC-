@@ -281,7 +281,7 @@ export default function HomePage() {
 
               {/* Building Illustration */}
               <div className="w-full max-w-[280px] border-4 border-g-maroon rounded-2xl overflow-hidden retro-shadow flex-shrink-0 bg-white rotate-[1.5deg] hover:scale-105 transition-transform duration-300">
-                <img src="/images/gokuldham_society.png" alt="Gokuldham Society" className="w-full h-auto object-cover aspect-[4/3]" />
+                <img src="/TMKOC-/images/gokuldham_society.png" alt="Gokuldham Society" className="w-full h-auto object-cover aspect-[4/3]" />
                 <div className="bg-g-maroon text-yellow-100 text-center font-display py-1.5 font-bold text-xs uppercase tracking-wider">
                   Clubhouse Compound View
                 </div>

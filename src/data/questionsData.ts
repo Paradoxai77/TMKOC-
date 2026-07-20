@@ -535,6 +535,314 @@ export const QUESTIONS_DATA: QuizQuestion[] = [
       correct: "Hey Maa, Mataji! Sahi jawab! Disha Vakani, the queen of Garba!",
       incorrect: "Incorrect! Daya Gada is doing an angry garba now."
     }
+  },
+  // 25. MCQ - Famous Personalities (Behind the scenes)
+  {
+    id: "q_shyam_pathak_ca",
+    category: "famous_personalities",
+    q_type: "mcq",
+    difficulty_tier: "medium",
+    prompt_text: "What is the real-life profession of Shyam Pathak, the actor who plays Patrakar Popatlal?",
+    options: [
+      { id: "prof_1", text: "Journalist" },
+      { id: "prof_2", text: "Chartered Accountant (CA)" },
+      { id: "prof_3", text: "Software Engineer" },
+      { id: "prof_4", text: "Lawyer" }
+    ],
+    correct_option_id: "prof_2",
+    witty_one_liners: {
+      correct: "Tax calculations or news reporting, Popatlal is a master of both!",
+      incorrect: "Duniya hila dunga! Popatlal is actually a qualified Chartered Accountant!"
+    }
+  },
+  // 26. Boolean - Character Quiz
+  {
+    id: "q_roshan_names",
+    category: "character_quiz",
+    q_type: "boolean",
+    difficulty_tier: "easy",
+    prompt_text: "In Taarak Mehta Ka Ooltah Chashmah, the character Roshan Singh Sodhi and his wife share the same first name 'Roshan'.",
+    correct_answer: true,
+    witty_one_liners: {
+      correct: "O Papa Ji! Both are indeed named Roshan. Double the energy!",
+      incorrect: "Arey yaar! Roshan and Roshan, they are the most energetic couple!"
+    }
+  },
+  // 27. TextInput - Society Trivia
+  {
+    id: "q_jeevdaya_mother",
+    category: "society_trivia",
+    q_type: "text_input",
+    difficulty_tier: "medium",
+    prompt_text: "What is the name of Daya Gada's mother who lives in Ahmedabad and is a constant off-screen presence on the phone?",
+    accepted_answers: [
+      "jeevdaya",
+      "jeevdayaben",
+      "jeevdaya ben"
+    ],
+    hints: [
+      { cost_penalty_xp: 15, text: "Her name starts with 'Jeev' (meaning life/soul)." }
+    ],
+    witty_one_liners: {
+      correct: "Hey Maa, Mataji! You know Jeevdayaben's wisdom!",
+      incorrect: "Incorrect. Daya's mother is Jeevdayaben, who has never shown her face!"
+    }
+  },
+  // 28. MCQ - Character Quiz
+  {
+    id: "q_bagha_fullname",
+    category: "character_quiz",
+    q_type: "mcq",
+    difficulty_tier: "hard",
+    prompt_text: "What is the full character name of Bagha, Jethalal's loyal employee at Gada Electronics?",
+    options: [
+      { id: "bag_1", text: "Bhagwan Das Gada" },
+      { id: "bag_2", text: "Bagheshwar Daddu Undhaiwala" },
+      { id: "bag_3", text: "Bagha Sengupta" },
+      { id: "bag_4", text: "Bagheshwar Nattu Undhaiwala" }
+    ],
+    correct_option_id: "bag_2",
+    witty_one_liners: {
+      correct: "Bawri ji is blushing! Yes, it's Bagheshwar Daddu Undhaiwala.",
+      incorrect: "Galti se mistake ho gaya! His full name is Bagheshwar Daddu Undhaiwala."
+    }
+  },
+  // 29. MCQ - Society Trivia
+  {
+    id: "q_dt_construction",
+    category: "society_trivia",
+    q_type: "mcq",
+    difficulty_tier: "hard",
+    prompt_text: "What is the name of Sundar's construction company that renovated the Gokuldham society?",
+    options: [
+      { id: "const_1", text: "Sundar Renovations" },
+      { id: "const_2", text: "Ahmedabad Builders" },
+      { id: "const_3", text: "D&T Construction Company" },
+      { id: "const_4", text: "Gada & Brother-in-Law Corp" }
+    ],
+    correct_option_id: "const_3",
+    witty_one_liners: {
+      correct: "Jethalal's wallet is crying! D&T (Daya & Tapu) Construction did it!",
+      incorrect: "Wrong! Sundar named it D&T Construction (Daya & Tapu) to escape bills!"
+    }
+  },
+  // 30. MCQ - Famous Personalities (Behind the scenes)
+  {
+    id: "q_jethalal_offered",
+    category: "famous_personalities",
+    q_type: "mcq",
+    difficulty_tier: "hard",
+    prompt_text: "Which of these actors were reportedly offered the role of Jethalal Gada before Dilip Joshi?",
+    options: [
+      { id: "off_1", text: "Ali Asgar" },
+      { id: "off_2", text: "Rajpal Yadav" },
+      { id: "off_3", text: "Both Ali Asgar and Rajpal Yadav" },
+      { id: "off_4", text: "Kapil Sharma" }
+    ],
+    correct_option_id: "off_3",
+    witty_one_liners: {
+      correct: "Wow, you know your TMKOC history! Both were offered the role before Dilip Joshi made it legendary.",
+      incorrect: "Nope, both Ali Asgar and Rajpal Yadav were approached before Dilip Joshi accepted."
+    }
+  },
+  // 31. Boolean - Famous Personalities (Behind the scenes)
+  {
+    id: "q_amit_bhatt_audition",
+    category: "famous_personalities",
+    q_type: "boolean",
+    difficulty_tier: "medium",
+    prompt_text: "In real life, actor Amit Bhatt did not have to audition for the role of Champaklal Gada (Bapuji).",
+    correct_answer: true,
+    witty_one_liners: {
+      correct: "Sahi pakde! Producer Asit Modi cast him in just 5 minutes without an audition on Dilip Joshi's recommendation.",
+      incorrect: "Wrong guess! He was selected without an audition within 5 minutes of meeting the producer."
+    }
+  },
+  // 32. MCQ - Character Quiz
+  {
+    id: "q_jayantilal_gada",
+    category: "character_quiz",
+    q_type: "mcq",
+    difficulty_tier: "hard",
+    prompt_text: "What is the name of Jethalal's grandfather (Champaklal's father) whose photo hangs in the Gada household?",
+    options: [
+      { id: "gf_1", text: "Girdharlal Gada" },
+      { id: "gf_2", text: "Jayantilal Girdharlal Gada" },
+      { id: "gf_3", text: "Champaklal Jayantilal Gada" },
+      { id: "gf_4", text: "Mohanlal Gada" }
+    ],
+    correct_option_id: "gf_2",
+    witty_one_liners: {
+      correct: "Correct! Jayantilal Girdharlal Gada. Bhide is impressed by your history knowledge!",
+      incorrect: "No! Bapuji is checking his stick. The correct name is Jayantilal Girdharlal Gada."
+    }
+  },
+  // 33. MCQ - Guess Dialogue
+  {
+    id: "q_bawri_catchphrase",
+    category: "guess_dialogue",
+    q_type: "mcq",
+    difficulty_tier: "easy",
+    prompt_text: "Complete Bawri's famous catchphrase when she makes a mistake: 'Galti se...'",
+    options: [
+      { id: "baw_1", text: "Galti ho gayi" },
+      { id: "baw_2", text: "Mistake ho gaya" },
+      { id: "baw_3", text: "Gadbad ho gayi" },
+      { id: "baw_4", text: "Tension ho gaya" }
+    ],
+    correct_option_id: "baw_2",
+    witty_one_liners: {
+      correct: "Hahaha! 'Galti se mistake ho gaya!' Bawri ji would love this.",
+      incorrect: "Hey bhagwan! Have you ever seen Bawri and Bagha together?"
+    }
+  },
+  // 34. MCQ - Guess Dialogue
+  {
+    id: "q_chalu_pandey_catchphrase",
+    category: "guess_dialogue",
+    q_type: "mcq",
+    difficulty_tier: "easy",
+    prompt_text: "What is Inspector Chalu Pandey's signature catchphrase when introducing himself?",
+    options: [
+      { id: "cp_1", text: "Hum hain Inspector Chalu Pandey!" },
+      { id: "cp_2", text: "Pehle Pandey, Phir Chalu!" },
+      { id: "cp_3", text: "Chalu Pandey, kaam chalu!" },
+      { id: "cp_4", text: "Pandey ji ka swagat karo!" }
+    ],
+    correct_option_id: "cp_2",
+    witty_one_liners: {
+      correct: "Humara naam hai Inspector Chalu Pandey, Pehle Pandey, Phir Chalu!",
+      incorrect: "Wrong! Keep guessing or he will lock you up in the lockup!"
+    }
+  },
+  // 35. MCQ - Character Quiz
+  {
+    id: "q_toofaan_express",
+    category: "character_quiz",
+    q_type: "mcq",
+    difficulty_tier: "easy",
+    prompt_text: "What is the name of the newspaper company where Patrakar Popatlal works?",
+    options: [
+      { id: "news_1", text: "Mumbai Samachar" },
+      { id: "news_2", text: "Kal Tak News" },
+      { id: "news_3", text: "Toofaan Express" },
+      { id: "news_4", text: "Gokuldham Times" }
+    ],
+    correct_option_id: "news_3",
+    witty_one_liners: {
+      correct: "Toofaan Express is printing a front-page story on your genius!",
+      incorrect: "Wrong! Popatlal's umbrella is shaking in anger. It's Toofaan Express!"
+    }
+  },
+  // 36. MCQ - Character Quiz
+  {
+    id: "q_achar_papad",
+    category: "character_quiz",
+    q_type: "mcq",
+    difficulty_tier: "easy",
+    prompt_text: "What homemade items does Madhavi Bhide sell as part of her home business?",
+    options: [
+      { id: "biz_1", text: "Sweets and Chocolates" },
+      { id: "biz_2", text: "Pickles and Papad (Achar and Papad)" },
+      { id: "biz_3", text: "Sarees and Dress materials" },
+      { id: "biz_4", text: "Spices and Masalas" }
+    ],
+    correct_option_id: "biz_2",
+    witty_one_liners: {
+      correct: "Bilkul sahi! Madhavi's Achar and Papad are Gokuldham's favorites.",
+      incorrect: "Incorrect. Madhavi makes delicious home-made pickles and papads!"
+    }
+  },
+  // 37. MCQ - Society Trivia
+  {
+    id: "q_rita_reporter_channel",
+    category: "society_trivia",
+    q_type: "mcq",
+    difficulty_tier: "medium",
+    prompt_text: "Which news channel does Gokuldham's resident Rita Reporter work for?",
+    options: [
+      { id: "chan_1", text: "Toofaan Express" },
+      { id: "chan_2", text: "Kal Tak" },
+      { id: "chan_3", text: "Sab TV News" },
+      { id: "chan_4", text: "Bharat Samachar" }
+    ],
+    correct_option_id: "chan_2",
+    witty_one_liners: {
+      correct: "Correct! Rita Reporter reports live for Kal Tak!",
+      incorrect: "Wrong channel! Popatlal works for Toofaan Express, but Rita works for Kal Tak!"
+    }
+  },
+  // 38. Boolean - Character Quiz
+  {
+    id: "q_gogi_parentage",
+    category: "character_quiz",
+    q_type: "boolean",
+    difficulty_tier: "easy",
+    prompt_text: "Tapu Sena's Gogi (Gurucharan Singh Sodhi) is the son of Roshan Singh Sodhi and Roshan Kaur Sodhi.",
+    correct_answer: true,
+    witty_one_liners: {
+      correct: "Sodhi family is proud! Gogi is indeed their only son.",
+      incorrect: "O Papa Ji! You missed Gogi's parentage?"
+    }
+  },
+  // 39. MCQ - Mythology Corner
+  {
+    id: "q_dahi_handi_tapu",
+    category: "mythology_corner",
+    q_type: "mcq",
+    difficulty_tier: "easy",
+    prompt_text: "In the grand Gokuldham Janmashtami celebration, who traditionally breaks the Dahi Handi first?",
+    options: [
+      { id: "handi_1", text: "Jethalal Gada" },
+      { id: "handi_2", text: "Tapu (Tipendra Gada)" },
+      { id: "handi_3", text: "Bagha" },
+      { id: "handi_4", text: "Sodhi" }
+    ],
+    correct_option_id: "handi_2",
+    witty_one_liners: {
+      correct: "Tapu Sena leads the way! Tapu breaks the handi.",
+      incorrect: "Wrong! Tapu is Gokuldham's ultimate Dahi Handi champion."
+    }
+  },
+  // 40. TextInput - Emoji Decode
+  {
+    id: "q_jalebi_fafda_emoji",
+    category: "emoji_decode",
+    q_type: "text_input",
+    difficulty_tier: "easy",
+    prompt_text: "Decode this emoji string to find Jethalal's ultimate Sunday breakfast food: 😋🥨🍩",
+    accepted_answers: [
+      "jalebi fafda",
+      "jalebi phafda",
+      "fafda jalebi",
+      "phafda jalebi"
+    ],
+    hints: [
+      { cost_penalty_xp: 10, text: "It's a sweet and salty combination popular in Gujarat. Jethalal can't live without it." }
+    ],
+    witty_one_liners: {
+      correct: "Bapuji approved! Jalebi Fafda party is on!",
+      incorrect: "Nonsense! Daya has to make Jalebi Fafda for you to learn this."
+    }
+  },
+  // 41. MCQ - Speed Round
+  {
+    id: "q_abdul_shop_name",
+    category: "speed_round",
+    q_type: "mcq",
+    difficulty_tier: "easy",
+    prompt_text: "What is the official name of Abdul's soda/general store shop located just outside Gokuldham Society?",
+    options: [
+      { id: "abd_1", text: "Abdul Soda Shop" },
+      { id: "abd_2", text: "Gokuldham General Store" },
+      { id: "abd_3", text: "All In One General Store" },
+      { id: "abd_4", text: "Apna Bazaar" }
+    ],
+    correct_option_id: "abd_3",
+    witty_one_liners: {
+      correct: "Sahi pakde! It is the All In One General Store.",
+      incorrect: "Incorrect! Soda is just one of many things Abdul sells at the All In One General Store."
+    }
   }
 ];
 
@@ -545,7 +853,7 @@ export const CATEGORIES_META = [
     description: "Test your memory on the compound, the notices, and meetings.",
     icon: "FaBuilding",
     difficulty: "Medium",
-    questionsCount: 4,
+    questionsCount: 6,
     unlockedAtLevel: 1,
   },
   {
@@ -554,7 +862,7 @@ export const CATEGORIES_META = [
     description: "How well do you know Jethalal, Sodhi, Iyer, and Nattu Kaka?",
     icon: "FaUsers",
     difficulty: "Easy",
-    questionsCount: 3,
+    questionsCount: 8,
     unlockedAtLevel: 1,
   },
   {
@@ -599,7 +907,7 @@ export const CATEGORIES_META = [
     description: "Lightning-fast questions at Abdul's shop under high pressure.",
     icon: "FaRunning",
     difficulty: "Hard",
-    questionsCount: 5,
+    questionsCount: 3,
     unlockedAtLevel: 2,
   },
   {
@@ -608,7 +916,7 @@ export const CATEGORIES_META = [
     description: "Learn about the production history, real actors, and original column details.",
     icon: "FaUsers",
     difficulty: "Medium",
-    questionsCount: 4,
+    questionsCount: 7,
     unlockedAtLevel: 1,
   },
   {

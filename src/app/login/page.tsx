@@ -26,7 +26,7 @@ const RESIDENTS: ResidentCard[] = [
     name: "Jethalal Gada",
     username: "Jetha_Gada_100",
     avatar: "🧔🏽",
-    imageSrc: "/images/jethalal.png",
+    imageSrc: "/TMKOC-/images/jethalal.png",
     level: 32,
     xp: 12850,
     coins: 2500,
@@ -38,7 +38,7 @@ const RESIDENTS: ResidentCard[] = [
     name: "Aatmaram Bhide",
     username: "Bhide_Ek_Mev_Secretary",
     avatar: "👨🏽‍🏫",
-    imageSrc: "/images/bhide.png",
+    imageSrc: "/TMKOC-/images/bhide.png",
     level: 28,
     xp: 11400,
     coins: 1500,
@@ -50,7 +50,7 @@ const RESIDENTS: ResidentCard[] = [
     name: "Daya Gada",
     username: "Daya_Ben_Garba",
     avatar: "💃🏽",
-    imageSrc: "/images/daya.png",
+    imageSrc: "/TMKOC-/images/daya.png",
     level: 15,
     xp: 3000,
     coins: 800,
@@ -198,7 +198,7 @@ export default function LoginPage() {
           </div>
 
           <div className="w-full md:w-52 h-32 border-4 border-g-mustard bg-white rounded-xl overflow-hidden shadow-md flex-shrink-0 rotate-[1deg] hover:scale-105 transition-transform duration-300">
-            <img src="/images/gokuldham_society.png" alt="Gokuldham Society" className="w-full h-full object-cover" />
+            <img src="/TMKOC-/images/gokuldham_society.png" alt="Gokuldham Society" className="w-full h-full object-cover" />
           </div>
         </div>
       </motion.section>
